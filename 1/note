@@ -70,6 +70,5 @@ linux文件类型(7种)
 
   x86采用小端存储 tcp/ip规定通讯为大端
 
-
-
+查看端口666的状态 netstat -apn | grep 666
 

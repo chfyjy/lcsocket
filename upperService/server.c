@@ -7,7 +7,7 @@ int main(void)
 	sfd = socket(AF_INET, SOCK_STREAM, 0);
 	if(sfd == -1)
 	{
-		printf("%s\n", "create error");
+		perror("create error");
 		return -1;
 	}
 
@@ -18,14 +18,14 @@ int main(void)
 	int ret = bind(sfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
 	if(ret == -1)
 	{
-		printf("%s\n", "bind error");
+		perror("bind error");
 		return -1;
 	}
 	
 	ret = listen(sfd, 128);
 	if(ret == -1)
 	{
-		printf("%s\n", "listen error");
+		perror("listen error");
 		return -1;
 	}
 
@@ -34,9 +34,16 @@ int main(void)
 	cfd = accept(sfd, (struct sockaddr*)&client_addr, &client_addr_len);
 	if(cfd < 0)
 	{
-		printf("%s\n", "accept error");
+		perror("accept error");
 		return -1;
 	}
+	else	     
+	{
+		char ipbuff[16];                	
+		printf("client addr:%s:%d\n", 
+				inet_ntop(AF_INET, &client_addr.sin_addr.s_addr, ipbuff, sizeof(ipbuff)), 
+     				ntohs(client_addr.sin_port));
+	}    
 
 	int n, i;
 	char buff[BUFSIZ];

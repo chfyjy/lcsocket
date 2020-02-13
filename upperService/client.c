@@ -7,7 +7,7 @@ int main(void)
 	cfd = socket(AF_INET, SOCK_STREAM, 0);
 	if(cfd == -1)
 	{
-		printf("%s\n", "create error");
+		perror("create error");
 		return -1;
 	}
 
@@ -19,7 +19,7 @@ int main(void)
 	int ret = connect(cfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr));
 	if(ret == -1)
 	{
-		printf("%s\n", "connect error");
+		perror("connect error");
 		return -1;
 	}
 	
@@ -27,7 +27,6 @@ int main(void)
 	while(1)
 	{
 		char buff[BUFSIZ] = {'\0'};
-		//scanf("%s", buff);
 		fgets(buff, sizeof(buff), stdin);
 		n = strlen(buff);
 		write(cfd, buff, n);
