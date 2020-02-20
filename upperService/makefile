@@ -1,16 +1,14 @@
+src = $(wildcard *.c)
+obj = $(patsubst %.c, %.o, $(src))
+
 all : client server
 
-client:client.o
-	gcc client.o -o client
-client.o:client.c upper.h
-	gcc -c client.c -include upper.h
-
-server:server.o
-	gcc server.o -o server
-
-server.o:server.c upper.h
-	gcc -c server.c -include upper.h
-
+client:client.o upper.o
+	gcc client.o upper.o -o client -Wall
+server:server.o upper.o
+	gcc server.o upper.o -o server -Wall
+%.o:%.c
+	gcc -c $< -Wall
 
 clean:
-	rm *.o client server
+	rm $(obj) client server

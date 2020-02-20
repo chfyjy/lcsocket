@@ -72,3 +72,15 @@ linux文件类型(7种)
 
 查看端口666的状态 netstat -apn | grep 666
 
+read 返回值n
+	正常 n > 0 实际读到的字节数为n
+	     n = 0 数据读完
+	     n < 0 异常
+		errno	EINTR 被信号中断 重启或退出
+			EAGAIN/EWOULDBLOCK 非阻塞方式读 并且没有数据读 过段时间再尝试读
+			其他  错误
+
+
+
+
+
