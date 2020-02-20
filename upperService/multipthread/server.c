@@ -71,9 +71,10 @@ int main(void)
 		struct sockInfo sinfo;
 		sinfo.clientFd = cfd;
 		sinfo.clientAddr = client_addr;
-		pthread_create(&tid, NULL, doUpper, (void*)& sinfo);//创建线程
-		pthread_detach(tid);//分离线程
-
+		if(pthread_create(&tid, NULL, doUpper, (void*)& sinfo) == 0)//创建线程
+			pthread_detach(tid);//分离线程
+		else
+			perrorExit("pthread_create");
 	}
 
 
