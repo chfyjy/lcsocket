@@ -1,4 +1,12 @@
+#include <sys/wait.h>
 #include "upper.h"
+
+void wait_child(int signo)
+{
+
+	while(waitpid(0, NULL, WNOHANG));
+	return;
+}
 
 int main(void)
 {
@@ -36,8 +44,11 @@ int main(void)
 			Close(sfd);
 			break;
 		}
-		else//未回收子进程 客户端退出后 服务程序未结束 将会产生大量僵尸进程
+		else
+		{
 			Close(cfd);
+			signal(SIGCHLD, wait_child);
+		}
 
 	}
 	if(pid == 0)
