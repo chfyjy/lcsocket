@@ -82,5 +82,24 @@ read 返回值n
 
 
 
+多线程 多进程并发占用的cpu很多 适用于小型的服务 大量数据交互时 则不适用
+
+
+tcp状态转换 https://blog.csdn.net/wenqian1991/article/details/40110703
+	主动 被动 同时操作
+半关闭
+	shutdown函数
+
+2MSL
+
+端口复用
+
+多路io转接服务器
+
+	select
+
+	poll
+
+	epoll
 
 
