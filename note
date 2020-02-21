@@ -88,11 +88,12 @@ read 返回值n
 tcp状态转换 https://blog.csdn.net/wenqian1991/article/details/40110703
 	主动 被动 同时操作
 半关闭
-	shutdown函数
+	shutdown函数 可以指定关闭读方式 写方式 读写方式 但会关闭所有文件关联的描述符
+	close函数 仅对对应描述符的引用计数-1 关闭后无法读写
 
-2MSL
+2MSL(maximum segment lifetime)
 
-端口复用
+端口复用  设置端口复用在端口实际未被占用时 例如time_wait状态时 不会报地址被占用错误
 
 多路io转接服务器
 
