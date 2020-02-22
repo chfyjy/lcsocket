@@ -17,6 +17,10 @@ int main(void)
 	//设定连接发起上限 此处不阻塞
 	Listen(sfd, 128);
 
+	//设置端口复用
+	int opt = 1;
+	setsockopt(sfd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
 	//建立连接
 	struct sockaddr_in client_addr;
 	socklen_t client_addr_len = sizeof(client_addr);
