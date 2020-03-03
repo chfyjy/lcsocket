@@ -95,9 +95,12 @@ tcp状态转换 https://blog.csdn.net/wenqian1991/article/details/40110703
 
 端口复用  设置端口复用在端口实际未被占用时 例如time_wait状态时 不会报地址被占用错误
 
+文件描述符初始 0 标准输入 1 标准输出 2标准出错
+
 多路io转接服务器
 
 	select
+		并发上限 1024（一个进程打开的文件描述符最多为1024）
 
 	poll
 
